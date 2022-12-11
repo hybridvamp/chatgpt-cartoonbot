@@ -1,9 +1,9 @@
 # Import necessary libraries
-from telethon import TelegramClient, sync, events, types
-from telethon.tl.types import MessageParseMode
+from telethon import TelegramClient, sync, events, api
+from telethon.tl.enums import MessageParseMode
 from PIL import Image
 
-# Set BOT_TOKEN as environment variable
+# Set BOT_TOKEN and API ID/HASH as environment variables
 import os
 
 bot_token = os.environ['BOT_TOKEN']
@@ -46,5 +46,8 @@ async def handle_message(message):
         # Send the converted image back to the user
         await client.send_file(message.to_id, 'cartoon.png')
 
-# Run the bot until it is stopped
+        # Delete the image from storage
+        os.remove('cartoon.png')
+
+# Run the bot until interrupted
 client.run_until_disconnected()
