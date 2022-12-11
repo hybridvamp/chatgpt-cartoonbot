@@ -1,11 +1,13 @@
 # Import necessary libraries
-from telethon import TelegramClient, sync, events, types, api_id
+from telethon import TelegramClient, sync, events, types
 from PIL import Image
 
 # Set BOT_TOKEN as environment variable
 import os
 
 bot_token = os.environ['BOT_TOKEN']
+api_id = os.environ['API_ID']
+api_hash = os.environ['API_HASH']
 
 # Create a client for your bot
 client = TelegramClient('cartoon_bot', api_id, api_hash, parse_mode=types.ParseMode.MARKDOWNV2)

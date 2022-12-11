@@ -1,2 +1,2 @@
 Pillow==7.0.0
-telethon
+telethon==1.17.0
