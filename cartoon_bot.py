@@ -1,6 +1,6 @@
 # Import necessary libraries
 from telethon import TelegramClient, sync, events
-from telethon.tl.enums import MessageParseMode
+from telethon.tl.types import MessageParseMode
 from telethon.sync import Client
 from PIL import Image
 
