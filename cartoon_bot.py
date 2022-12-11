@@ -27,7 +27,7 @@ except Exception as e:
 
 # connecting the client
 try:
-    bot = TelegramClient(None, 6, "eb06d4abfb49dc3eeb1aeb98ae0f581e").start(
+    client = TelegramClient(None, 6, "eb06d4abfb49dc3eeb1aeb98ae0f581e").start(
         bot_token=bot_token
     )
 except Exception as e:
