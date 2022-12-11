@@ -35,13 +35,13 @@ except Exception as e:
     exit(1)
 
 # Handle the /start command
-@client.on_event(events.NewMessage(pattern='/start'))
+@client.on(events.NewMessage(pattern="^/start"))
 async def handle_start_command(event):
     # Send a welcome message to the user
     await event.respond('Hello! I am a cartoon bot. Send me an image and I will convert it to a cartoon for you.')
 
 # Handle the /help command
-@client.on_event(events.NewMessage(pattern='/help'))
+@client.on(events.NewMessage(pattern="^/help"))
 async def handle_help_command(event):
     # Send a help message to the user
     await event.respond('To use this bot, simply send an image and I will convert it to a cartoon for you.\n\nYou can also use the /start command to get a welcome message.')
