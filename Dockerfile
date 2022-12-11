@@ -1,11 +1,14 @@
-FROM python:3.8-slim
+FROM python:3.8
 
 # Install necessary libraries
-COPY requirements.txt .
-RUN pip install -r requirements.txt
+COPY requirements.txt /app/
+RUN pip install -r /app/requirements.txt
 
-# Copy the bot's code
-COPY cartoon_bot.py .
+# Copy the bot code to the container
+COPY cartoon_bot.py /app/
 
-# Run the bot's code when the container starts
+# Set the working directory to the app directory
+WORKDIR /app/
+
+# Run the bot
 CMD ["python", "cartoon_bot.py"]

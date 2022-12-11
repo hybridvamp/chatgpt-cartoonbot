@@ -1,34 +1,32 @@
 # Import necessary libraries
-from telethon import TelegramClient, sync, events
+from telethon import TelegramClient, sync, events, parse_mode, api_id
 from PIL import Image
 
-# Set API ID and API hash as
-
+# Set BOT_TOKEN as environment variable
 import os
 
-api_id = os.environ['API_ID']
-api_hash = os.environ['API_HASH']
+bot_token = os.environ['BOT_TOKEN']
 
 # Create a client for your bot
-client = TelegramClient('cartoon_bot', api_id, api_hash)
+client = TelegramClient('cartoon_bot', api_id, api_hash, parse_mode=parse_mode.MARKDOWNV2)
 
 # Start the client
-client.start()
+client.start(bot_token=bot_token)
 
 # Handle the /start command
-@client.on_message('/start')
+@client.on_event(events.NewMessage(pattern='/start'))
 async def handle_start_command(event):
     # Send a welcome message to the user
     await event.respond('Hello! I am a cartoon bot. Send me an image and I will convert it to a cartoon for you.')
 
 # Handle the /help command
-@client.on_message('/help')
+@client.on_event(events.NewMessage(pattern='/help'))
 async def handle_help_command(event):
     # Send a help message to the user
     await event.respond('To use this bot, simply send an image and I will convert it to a cartoon for you.\n\nYou can also use the /start command to get a welcome message.')
 
 # Handle the message event
-@client.on(message)
+@client.on(events.NewMessage)
 async def handle_message(message):
     # Check if the message contains an image
     if message.photo:
