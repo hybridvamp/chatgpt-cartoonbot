@@ -20,7 +20,7 @@ log.info("\n\nStarting...\n")
 
 try:
     bot_token = os.environ['BOT_TOKEN']
-    AUTH = [int(i) for i in config("AUTH_USERS").split(" ")]
+    #AUTH = [int(i) for i in config("AUTH_USERS").split(" ")]
 except Exception as e:
     log.exception(e)
     exit(1)
