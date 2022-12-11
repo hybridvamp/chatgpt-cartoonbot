@@ -1,6 +1,7 @@
 import logging
 import threading
 import asyncio
+import os
 
 #from func import game_id, send_score, game_link, check_is_digit, get_checksum, get_token
 
@@ -8,7 +9,7 @@ from telethon import TelegramClient, events, Button
 from telethon.events import StopPropagation, NewMessage
 from telethon import TelegramClient
 from asyncio.exceptions import TimeoutError
-
+from PIL import Image
 
 # CONFIG
 logging.basicConfig(
@@ -18,7 +19,7 @@ log = logging.getLogger("cartoon")
 log.info("\n\nStarting...\n")
 
 try:
-    bot_token = config("BOT_TOKEN")
+    bot_token = os.environ['BOT_TOKEN']
     AUTH = [int(i) for i in config("AUTH_USERS").split(" ")]
 except Exception as e:
     log.exception(e)
