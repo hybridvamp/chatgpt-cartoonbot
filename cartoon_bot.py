@@ -64,11 +64,12 @@ async def handle_message(message):
         # Send the converted image back to the user
         #await client.send_file(message.to_id, 'cartoon.png')
 
-        # Get the ID of the user who sent the original message
-        user_id = message.from_id
+        # Get the ID of the user or chat where the message was sent
+        user_id = message.to_id
 
-        # Send the file to the user
+        # Send the file to the user or chat
         await client.send_file(user_id, 'cartoon.png')
+
 
 
         # Delete the image from storage
