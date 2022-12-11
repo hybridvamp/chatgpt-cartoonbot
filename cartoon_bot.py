@@ -1,5 +1,6 @@
 # Import necessary libraries
 from telethon import TelegramClient, sync, events, types
+from telethon.tl.types import MessageParseMode
 from PIL import Image
 
 # Set BOT_TOKEN as environment variable
