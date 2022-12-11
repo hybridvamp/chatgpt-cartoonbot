@@ -1,21 +1,37 @@
-# Import necessary libraries
-from telethon import TelegramClient, sync, events
-from telethon.tl.types import MessageParseMode
-from telethon.sync import Client
-from PIL import Image
+import logging
+import threading
+import asyncio
 
-# Set BOT_TOKEN and API ID/HASH as environment variables
-import os
+#from func import game_id, send_score, game_link, check_is_digit, get_checksum, get_token
 
-bot_token = os.environ['BOT_TOKEN']
-api_id = os.environ['API_ID']
-api_hash = os.environ['API_HASH']
+from telethon import TelegramClient, events, Button
+from telethon.events import StopPropagation, NewMessage
+from telethon import TelegramClient
+from asyncio.exceptions import TimeoutError
 
-# Create a client for your bot
-client = Client('cartoon_bot', api_id, api_hash, parse_mode=MessageParseMode.MARKDOWNV2)
 
-# Start the client
-client.start(bot_token=bot_token)
+# CONFIG
+logging.basicConfig(
+    level=logging.INFO, format="[%(levelname)s] %(asctime)s - %(message)s"
+)
+log = logging.getLogger("cartoon")
+log.info("\n\nStarting...\n")
+
+try:
+    bot_token = config("BOT_TOKEN")
+    AUTH = [int(i) for i in config("AUTH_USERS").split(" ")]
+except Exception as e:
+    log.exception(e)
+    exit(1)
+
+# connecting the client
+try:
+    bot = TelegramClient(None, 6, "eb06d4abfb49dc3eeb1aeb98ae0f581e").start(
+        bot_token=bot_token
+    )
+except Exception as e:
+    log.exception(e)
+    exit(1)
 
 # Handle the /start command
 @client.on_event(events.NewMessage(pattern='/start'))
@@ -51,4 +67,5 @@ async def handle_message(message):
         os.remove('cartoon.png')
 
 # Run the bot until interrupted
-client.run_until_disconnected()
+log.info("Bot has started.\n(c) @HYBRID_VAMP")
+bot.run_until_disconnected()

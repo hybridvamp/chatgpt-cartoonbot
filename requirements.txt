@@ -1,3 +1,4 @@
 telethon
 Pillow==8.2.0
 python-env
+python-decouple
