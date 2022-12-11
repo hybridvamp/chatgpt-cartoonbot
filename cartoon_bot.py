@@ -1,9 +1,9 @@
 # Import necessary libraries
-from telethon import TelegramClient, sync
+from telethon import TelegramClient, sync, events
 from PIL import Image
-from telethon.events import on_message
 
-# Set API ID and API hash as environment variables
+# Set API ID and API hash as
+
 import os
 
 api_id = os.environ['API_ID']
