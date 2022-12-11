@@ -11,7 +11,7 @@ api_id = os.environ['API_ID']
 api_hash = os.environ['API_HASH']
 
 # Create a client for your bot
-client = TelegramClient('cartoon_bot', api_id, api_hash, parse_mode=types.ParseMode.MARKDOWNV2)
+client = TelegramClient('cartoon_bot', api_id, api_hash, parse_mode=MessageParseMode.MARKDOWNV2)
 
 # Start the client
 client.start(bot_token=bot_token)
