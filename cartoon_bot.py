@@ -69,4 +69,4 @@ async def handle_message(message):
 
 # Run the bot until interrupted
 log.info("Bot has started.\n(c) @HYBRID_VAMP")
-bot.run_until_disconnected()
+client.run_until_disconnected()
