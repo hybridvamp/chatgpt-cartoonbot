@@ -1,14 +1,7 @@
 import logging
-import threading
-import asyncio
 import os
 
-#from func import game_id, send_score, game_link, check_is_digit, get_checksum, get_token
-
-from telethon import TelegramClient, events, Button
-from telethon.events import StopPropagation, NewMessage
-from telethon import TelegramClient
-from asyncio.exceptions import TimeoutError
+from telethon import TelegramClient, events
 from PIL import Image
 
 # CONFIG
@@ -21,13 +14,15 @@ log.info("\n\nStarting...\n")
 try:
     bot_token = os.environ['BOT_TOKEN']
     #AUTH = [int(i) for i in config("AUTH_USERS").split(" ")]
+    api_id = os.environ['API_ID']
+    api_hash = os.environ['API_HASH']
 except Exception as e:
     log.exception(e)
     exit(1)
 
 # connecting the client
 try:
-    client = TelegramClient(None, 6, "eb06d4abfb49dc3eeb1aeb98ae0f581e").start(
+    client = TelegramClient(None, api_id, api_hash).start(
         bot_token=bot_token
     )
 except Exception as e:
@@ -62,15 +57,8 @@ async def handle_message(message):
         img.save('cartoon.png')
         
         # Send the converted image back to the user
-        #await client.send_file(message.to_id, 'cartoon.png')
-
-        # Get the ID of the user or chat where the message was sent
-        user_id = message.to_id
-
-        # Send the file to the user or chat
+        user_id = message.from_id
         await client.send_file(user_id, 'cartoon.png')
-
-
 
         # Delete the image from storage
         os.remove('cartoon.png')
